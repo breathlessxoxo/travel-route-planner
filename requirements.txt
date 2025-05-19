@@ -9,5 +9,5 @@ httpx==0.25.1
 python-jose==3.3.0
 passlib==1.7.4
 python-multipart==0.0.6
-aiohttp==3.8.6
+aiohttp==3.11.18
 mysqlclient==2.2.4 

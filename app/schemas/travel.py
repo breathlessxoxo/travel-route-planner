@@ -7,7 +7,7 @@ class BudgetLevel(str, Enum):
     MEDIUM = "medium"
     HIGH = "high"
 
-class GenerateRouteRequest(BaseModel):
+class GenerateRouteRequest(BaseModel):#必须的
     destination: str = Field(..., description="目的地城市")
     days: int = Field(..., ge=1, le=14, description="旅行天数")
     budget: BudgetLevel = Field(..., description="预算等级")
