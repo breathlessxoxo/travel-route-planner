@@ -19,18 +19,18 @@ class AttractionResponse(BaseModel):
 
 class DayPlan(BaseModel):
     day: int
-    attractions: List[AttractionResponse]
+    attractions: List[str]
     hotel: str
     total_drive_time: float
 
 class GenerateRouteResponse(BaseModel):
     status: str = "success"
-    data: List[DayPlan]
+    data: dict
     raw_ai_response: str
 
 class ValidateRouteRequest(BaseModel):
     days: List[DayPlan]
-    raw_ai_response: str
+    destination: str
 
 class ValidateRouteResponse(BaseModel):
     is_valid: bool

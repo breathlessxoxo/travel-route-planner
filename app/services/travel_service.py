@@ -8,7 +8,7 @@ import os
 from dotenv import load_dotenv
 import re
 from openai import OpenAI
-
+import time
 load_dotenv()#加载环境变量
 
 class TravelService:
@@ -173,15 +173,16 @@ class TravelService:
 
     async def calculate_driving_time(self, origin: Dict[str, float], destination: Dict[str, float]) -> float:
         """计算两点间的驾车时间（小时）"""
-        # 格式化经纬度
-        origin_str = f"{self.format_coordinate(origin['lng'])},{self.format_coordinate(origin['lat'])}"
-        dest_str = f"{self.format_coordinate(destination['lng'])},{self.format_coordinate(destination['lat'])}"
+        # 格式化经纬度,格式是纬度,经度
+        origin_str = f"{self.format_coordinate(origin['lat'])},{self.format_coordinate(origin['lng'])}"
+        dest_str = f"{self.format_coordinate(destination['lat'])},{self.format_coordinate(destination['lng'])}"
         
         params = {
             "origin": origin_str,
             "destination": dest_str,
             "ak": self.baidu_map_ak,
-            "output": "json"
+            "output": "json",
+            "timestamp": str(int(time.time()))
         }
         
         url = self.build_baidu_map_url("/directionlite/v1/driving", params)
@@ -211,6 +212,7 @@ class TravelService:
         validation_results = []
         
         for day_plan in days:
+            day_plan = dict(day_plan)#由于自己的python版本过高导致class不能用[],先转为dict
             day_num = day_plan["day"]
             attractions = day_plan["attractions"]
             total_drive_time = 0.0

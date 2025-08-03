@@ -71,9 +71,10 @@ async def generate_route(
 
 @router.post("/validate-route", response_model=ValidateRouteResponse)
 async def validate_route(request: ValidateRouteRequest):
+    print("qqq")
     """验证旅游路线"""
     try:
-        result = await travel_service.validate_route(request.days, request.destination)
+        result = await travel_service.validate_route(request.days, request.raw_ai_response)
         return result
     except Exception as e:
         raise e

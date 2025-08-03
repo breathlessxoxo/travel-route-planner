@@ -1,0 +1,91 @@
+1.POST /api/generate-route
+示例请求：
+{
+    "destination": "西安",
+    "days": 3,
+    "budget": "medium",
+    "people": 4
+}
+
+示例响应：
+
+{
+    "status": "success",
+    "data": {
+        "days": [
+            {
+                "day": 1,
+                "attractions": [
+                    "1:秦始皇兵马俑博物馆",
+                    "2:华清宫"
+                ],
+                "hotel": "西安华清御汤酒店",
+                "total_drive_time": 1.5
+            },
+            {
+                "day": 2,
+                "attractions": [
+                    "1:大雁塔",
+                    "2:陕西历史博物馆",
+                    "3:回民街"
+                ],
+                "hotel": "西安威斯汀大酒店",
+                "total_drive_time": 2
+            },
+            {
+                "day": 3,
+                "attractions": [
+                    "1:西安城墙",
+                    "2:钟鼓楼广场",
+                    "3:大唐不夜城"
+                ],
+                "hotel": "西安索菲特传奇酒店",
+                "total_drive_time": 2.5
+            }
+        ]
+    },
+    "raw_ai_response": "{\n    \"days\": [\n        {\n            \"day\": 1,\n            \"attractions\": [\"1:秦始皇兵马俑博物馆\", \"2:华清宫\"],\n            \"hotel\": \"西安华清御汤酒店\",\n            \"total_drive_time\": 1.5\n        },\n        {\n            \"day\": 2,\n            \"attractions\": [\"1:大雁塔\", \"2:陕西历史博物馆\", \"3:回民街\"],\n            \"hotel\": \"西安威斯汀大酒店\",\n            \"total_drive_time\": 2\n        },\n        {\n            \"day\": 3,\n            \"attractions\": [\"1:西安城墙\", \"2:钟鼓楼广场\", \"3:大唐不夜城\"],\n            \"hotel\": \"西安索菲特传奇酒店\",\n            \"total_drive_time\": 2.5\n        }\n    ]\n}"
+}
+
+2.POST /api/validate-route
+示例请求：
+{
+    "days": [
+            {
+                "day": 1,
+                "attractions": [
+                    "1:秦始皇兵马俑博物馆",
+                    "2:华清宫"
+                ],
+                "hotel": "西安华清御汤酒店",
+                "total_drive_time": 1.5
+            },
+            {
+                "day": 2,
+                "attractions": [
+                    "1:大雁塔",
+                    "2:陕西历史博物馆",
+                    "3:回民街"
+                ],
+                "hotel": "西安威斯汀大酒店",
+                "total_drive_time": 2
+            },
+            {
+                "day": 3,
+                "attractions": [
+                    "1:西安城墙",
+                    "2:钟鼓楼广场",
+                    "3:大唐不夜城"
+                ],
+                "hotel": "西安索菲特传奇酒店",
+                "total_drive_time": 2.5
+            }
+        ],
+    destination:"西安"
+},
+
+示例响应：
+{
+    "is_valid": true,
+    "invalid_days": []
+}
