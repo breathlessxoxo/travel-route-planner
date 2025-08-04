@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .api.routes import router
+from .api.user import auth_router
 from .db.database import init_db
 import logging
 
@@ -28,6 +29,7 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(router, prefix="/api")
+app.include_router(auth_router,prefix="")
 
 @app.on_event("startup")
 async def startup_event():

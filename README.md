@@ -48,7 +48,6 @@ uvicorn app.main:app --reload
 启动服务后访问：http://localhost:8000/docs
 
 ### 主要接口
-
 1. 生成旅游路线
 ```
 POST /api/generate-route

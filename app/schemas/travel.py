@@ -13,6 +13,7 @@ class GenerateRouteRequest(BaseModel):#必须的
     budget: BudgetLevel = Field(..., description="预算等级")
     people: int = Field(..., ge=1, le=10, description="出行人数")
 
+
 class AttractionResponse(BaseModel):
     name: str
     visit_order: int

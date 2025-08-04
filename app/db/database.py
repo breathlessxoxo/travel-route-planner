@@ -5,14 +5,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# 使用SQLite作为开发数据库
-DATABASE_URL = "sqlite:///./travel_planner.db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 # 创建数据库引擎
 engine = create_engine(
     DATABASE_URL,
     echo=True,  # 在开发环境中打印SQL语句
-    connect_args={"check_same_thread": False}  # SQLite特定配置
+    pool_pre_ping=True  # 启用连接池预Ping，用于检测连接是否有效
 )
 
 def init_db():
@@ -25,4 +24,4 @@ def get_session() -> Generator[Session, None, None]:
         try:
             yield session
         finally:
-            session.close() 
+            session.close()
